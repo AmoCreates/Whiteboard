@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef} from 'react'
 import { io } from 'socket.io-client';
 
 
 const App = () => {
-  const port = "https://whiteboardbackend-1knc.onrender";
+  const port = "https://whiteboardbackend-1knc.onrender.com";
   const socket = io(port);
   const canvasRef = useRef(null);
 
