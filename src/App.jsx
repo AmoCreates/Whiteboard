@@ -31,8 +31,10 @@ const App = () => {
         y = e.y;
 
         if(mousedown) {
-          socket.emit('draw', {x, y});
-          ctx.lineTo(x, y);
+          socket.emit('draw', {
+            x: e.offsetX,
+            y: e.offsetY
+          });
           
         }
       }
