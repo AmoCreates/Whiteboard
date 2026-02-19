@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { io } from 'socket.io-client';
 
 
 const App = () => {
-  const socket = useMemo(() => io(import.meta.env.VITE_BACKEND_URL), []);
+  const port = "https://whiteboardbackend-1knc.onrender" || "http://localhost:3000/";
+  const socket = io(port);
   const canvasRef = useRef(null);
-
 
   let x, y;
   let mousedown = false;
