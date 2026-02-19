@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 
 
 const App = () => {
-  const port = "https://whiteboardbackend-1knc.onrender" || "http://localhost:3000/";
+  const port = "https://whiteboardbackend-1knc.onrender";
   const socket = io(port);
   const canvasRef = useRef(null);
 
