@@ -1,9 +1,9 @@
-import React, { useEffect, useRef} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { io } from 'socket.io-client';
 
+const socket = io("https://whiteboardbackend-1knc.onrender.com");
 
 const App = () => {
-  const socket = io("https://whiteboardbackend-1knc.onrender.com");
   const canvasRef = useRef(null);
 
   let x, y;
@@ -43,10 +43,7 @@ const App = () => {
       })
 
 
-      return () => {
-        socket.off('on_draw');
-        socket.off('on_mouse_down');
-      };
+      return () => socket.off("receive_message");
     
   }, [])
   
