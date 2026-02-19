@@ -40,7 +40,6 @@ const App = () => {
       }
 
       socket.on('on_draw', ({x, y}) => {
-        ctx.beginPath();
         ctx.lineTo(x, y);
         ctx.stroke();
       })
