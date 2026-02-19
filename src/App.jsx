@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { io } from 'socket.io-client';
 
-const socket = io("https://whiteboardbackend-1knc.onrender.com");
 
 const App = () => {
+  const socket = io("https://whiteboardbackend-1knc.onrender.com");
   const canvasRef = useRef(null);
 
   let x, y;
@@ -31,21 +31,23 @@ const App = () => {
         y = e.y;
 
         if(mousedown) {
-          socket.emit('draw', {
-            x: e.offsetX,
-            y: e.offsetY
-          });
-          
+          socket.emit('draw', {x, y});
+          ctx.lineTo(x, y);
+          ctx.stroke();
         }
       }
 
       socket.on('on_draw', ({x, y}) => {
+        ctx.beginPath();
         ctx.lineTo(x, y);
         ctx.stroke();
       })
 
 
-      return () => socket.off("receive_message");
+      return () => {
+        socket.off("on_draw");
+        socket.off("on_mouse_down");
+      };
     
   }, [])
   
