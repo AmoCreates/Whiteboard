@@ -26,16 +26,17 @@ const App = () => {
         mousedown = false;
       }
 
-      window.onmousemove = (e) => {
-        if (!mousedowned) return;
+      window.onmousemove = (e)=> {
+        x = e.x;
+        y = e.y;
 
-        // Just send – do NOT draw here
-        socket.emit('draw', {
+        if(mousedown) {
+          socket.emit('draw', {
           x: e.offsetX,
           y: e.offsetY
         });
-      };
-      
+        }
+      }
 
       socket.on('on_draw', ({x, y}) => {
         ctx.lineTo(x, y);
