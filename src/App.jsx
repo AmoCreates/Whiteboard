@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { io } from 'socket.io-client';
 
-const socket = io("http://localhost:3000/");
 
+const port = import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/";
+const socket = io(port);
 const App = () => {
   const canvasRef = useRef(null);
 
@@ -43,7 +44,10 @@ const App = () => {
       })
 
 
-      return () => socket.off("receive_message");
+      return () => {
+        socket.off('on_draw');
+        socket.off('on_mouse_down');
+      };
     
   }, [])
   
