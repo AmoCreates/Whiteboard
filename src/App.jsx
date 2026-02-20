@@ -54,6 +54,7 @@ const App = () => {
   
   return (
     <div>
+      <h1 className='z-20 font-bold text-5xl absolute top-[40px] left-[50%] translate-[-50%]'> WHITEBOARD</h1>
       <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight}></canvas>
     </div>
   )
